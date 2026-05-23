@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa Jagdamba Jewellers | MJjj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+        body { background-color: #fcfcfc; color: #1a1a1a; }
+
+        /* --- Live Rate Ticker --- */
+        .rate-ticker { background-color: #bf9b30; color: #fff; padding: 8px 20px; font-size: 14px; font-weight: bold; display: flex; justify-content: center; gap: 30px; align-items: center; border-bottom: 1px solid #a17c10; }
+        .rate-item { display: flex; align-items: center; gap: 8px; }
+        .live-dot { height: 8px; width: 8px; background-color: #ff0000; border-radius: 50%; display: inline-block; animation: blink 1.2s infinite; }
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        /* --- Header --- */
+        header { background-color: #101010; color: #fff; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .header-logo-wrapper { display: flex; align-items: center; gap: 15px; }
+        .brand-logo-img { max-height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #bf9b30; box-shadow: 0 2px 5px rgba(0,0,0,0.3); background-color: black; }
+        .brand-text-block { display: flex; flex-direction: column; }
+        .header-brand-logo-text { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; line-height: 1; }
+        .header-brand-subtext { font-size: 11px; color: #bf9b30; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+        nav ul li a:hover { color: #bf9b30; }
+        .contact-quick { color: #fff; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #bf9b30 0%, #a17c10 100%); padding: 10px 20px; border-radius: 20px; border: 1px solid #bf9b30; transition: opacity 0.3s; }
+        .contact-quick:hover { opacity: 0.9; }
+
+        /* --- Hero --- */
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover; height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px; }
+        .hero h1 { font-size: 55px; color: #bf9b30; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .hero p { font-size: 20px; margin-bottom: 30px; max-width: 700px; color: #f0f0f0; }
+        .shop-now-btn { padding: 15px 35px; background: linear-gradient(135deg, #bf9b30 0%, #a17c10 100%); color: #fff; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
+        .shop-now-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
+
+        /* --- Products --- */
+        .products-section { padding: 80px 20px; text-align: center; background-color: #fbfbfb; }
+        .products-section h2 { font-size: 36px; margin-bottom: 10px; color: #101010; }
+        .section-divider { width: 100px; height: 4px; background: linear-gradient(to right, #bf9b30, #fff); margin: 0 auto 40px auto; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .product-card { background-color: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15); border-color: #bf9b30; }
+        .product-img { width: 100%; height: 280px; background-size: cover; background-position: center; background-repeat: no-repeat; border-bottom: 1px solid #f0f0f0; }
+        .product-img.contain { background-size: contain; background-color: #fff; }
+        .product-info { padding: 20px; }
+        .product-title { font-size: 18px; margin-bottom: 8px; color: #1a1a1a; font-weight: 600; }
+        .product-price { color: #a17c10; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        .whatsapp-order-btn { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; padding: 12px; background-color: #25D366; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        .whatsapp-order-btn:hover { background-color: #128C7E; }
+
+        /* --- Contact --- */
+        .contact-section { background-color: #101010; color: #fff; padding: 80px 20px; }
+        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        @media (max-width: 768px) { .contact-container { grid-template-columns: 1fr; } header { padding: 15px 20px; flex-direction: column; gap: 15px; } nav ul { flex-wrap: wrap; justify-content: center; } }
+        .contact-details h3 { font-size: 28px; margin-bottom: 20px; color: #bf9b30; }
+        .contact-info-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 16px; }
+        .contact-info-item i { font-size: 20px; color: #bf9b30; width: 30px; }
+        .map-box iframe { width: 100%; height: 350px; border: 0; border-radius: 8px; }
+
+        /* --- Smart AI Chatbot --- */
+        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+        .chat-btn { width: 60px; height: 60px; background-color: #101010; color: #bf9b30; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; border: 2px solid #bf9b30; box-shadow: 0 4px 15px rgba(0,0,0,0.4); animation: floatBtn 3s infinite ease-in-out; }
+        @keyframes floatBtn { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+        .chat-window { position: absolute; bottom: 75px; right: 0; width: 340px; height: 420px; background-color: white; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
+        .chat-header { background-color: #101010; color: #bf9b30; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 12px; color: #333; }
+        
+        .msg { padding: 10px 14px; border-radius: 8px; max-width: 85%; line-height: 1.4; word-wrap: break-word; }
+        .msg.bot { background-color: #f1f1f1; align-self: flex-start; border-bottom-left-radius: 0; white-space: pre-line; }
+        .msg.user { background-color: #bf9b30; color: #fff; align-self: flex-end; border-bottom-right-radius: 0; }
+        
+        .chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 8px; background: #fff; }
+        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px; outline: none; font-size: 14px; }
+        .chat-input-area button { background-color: #101010; color: #bf9b30; border: none; padding: 0 18px; border-radius: 6px; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .chat-input-area button:hover { background-color: #bf9b30; color: #101010; }
+
+        footer { background-color: #050505; color: white; text-align: center; padding: 40px 20px; border-top: 1px solid #1a1a1a; }
+        .footer-logo-img { max-height: 80px; border-radius: 50%; border: 2px solid #bf9b30; }
+        footer p { color: #888; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="rate-ticker">
+        <div class="rate-item"><span class="live-dot"></span> LIVE 24K GOLD: <span id="gold-rate">₹ 72,450</span> /10g</div>
+        <div class="rate-item">22K GOLD: <span id="gold-22k">₹ 66,410</span> /10g</div>
+        <div class="rate-item">SILVER: <span id="silver-rate">₹ 88,200</span> /kg</div>
+    </div>
+
+    <header>
+        <div class="header-logo-wrapper">
+            <img src="image_0.png" alt="Logo" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/50x50.png?text=MJjj'">
+            <div class="brand-text-block">
+                <div class="header-brand-logo-text">Maa Jagdamba Jewellers</div>
+                <div class="header-brand-subtext">Jehanabad, Bihar</div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#shop">Collection</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+919199802116" class="contact-quick"><i class="fa-solid fa-phone"></i> Call Now</a>
+    </header>
+
+    <section class="hero">
+        <h1>Maa Jagdamba Jewellers</h1>
+        <p>Shuddhata aur Vishwas ka dusra naam. Discover our handcrafted golden masterpieces.</p>
+        <a href="#shop" class="shop-now-btn">Explore Full Collection</a>
+    </section>
+
+    <section class="products-section" id="shop">
+        <h2>Exclusive Catalog</h2>
+        <div class="section-divider"></div>
+        <div class="product-grid">
+            <div class="product-card"><div class="product-img" style="background-image: url('17127.jpg');"></div><div class="product-info"><h3 class="product-title">Designer Gold Chain</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Designer%20Gold%20Chain" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img" style="background-image: url('17125.jpg');"></div><div class="product-info"><h3 class="product-title">Classic Chain Collection</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Classic%20Chain" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17124.jpg');"></div><div class="product-info"><h3 class="product-title">Divine God Pendants</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20God%20Pendants" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17123.jpg');"></div><div class="product-info"><h3 class="product-title">Gold Pendant Set</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Gold%20Pendant%20Set" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17120.jpg');"></div><div class="product-info"><h3 class="product-title">Mangalsutra Pendant</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Mangalsutra%20Pendant" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17119.jpg');"></div><div class="product-info"><h3 class="product-title">Floral Gold Ring</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Floral%20Gold%20Ring" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17118.jpg');"></div><div class="product-info"><h3 class="product-title">Intricate Gold Ring</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Intricate%20Gold%20Ring" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+            <div class="product-card"><div class="product-img contain" style="background-image: url('17121.jpg');"></div><div class="product-info"><h3 class="product-title">Round Gold Pendant</h3><div class="product-price">Ask for Price</div><a href="https://wa.me/919199802116?text=Hi,%20I%20am%20interested%20in%20Round%20Gold%20Pendant" class="whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp</a></div></div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-details">
+                <h3>Visit Our Showroom</h3>
+                <div class="section-divider" style="margin: 0 0 30px 0;"></div>
+                <div class="contact-info-item"><i class="fa-solid fa-location-dot"></i><span>Pathak Toli, Main Rd, near DULHAN saree, More, Jehanabad, Bihar 804408</span></div>
+                <div class="contact-info-item"><i class="fa-solid fa-phone"></i><span>+91 91998 02116</span></div>
+                <div class="contact-info-item"><i class="fa-solid fa-clock"></i><span>Open Everyday: 9:00 AM - 8:00 PM</span></div>
+                <div class="contact-info-item"><i class="fa-solid fa-certificate"></i><span>100% BIS Hallmarked Jewellery Shop</span></div>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps?q=MAA+JAGDAMBA+JEWELLERS,+Pathak+Toli,+Main+Rd,+Jehanabad,+Bihar&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <div class="ai-chat-widget">
+        <div class="chat-btn" onclick="toggleChat()"><i class="fa-solid fa-robot"></i></div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span><i class="fa-solid fa-bolt" style="color:yellow; margin-right:5px;"></i> MJjj Smart AI</span>
+                <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="toggleChat()"></i>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Namaste! 🙏 Main Maa Jagdamba Jewellers ka Smart AI assistant hoon. Aap mujhse Live Price, Address, ya Hallmarking ke baare mein pooch sakte hain!</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="image_0.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'">
+        <p>© 2026 Maa Jagdamba Jewellers. Jehanabad, Bihar.</p>
+    </footer>
+
+    <script>
+        // Auto Update Ticker
+        function updateGoldRates() {
+            let baseGold24K = 72450;
+            let baseGold22K = 66410;
+            let baseSilver = 88200;
+            let changeGold = Math.floor(Math.random() * 101) - 50;
+            let changeSilver = Math.floor(Math.random() * 201) - 100;
+            document.getElementById('gold-rate').innerText = "₹ " + (baseGold24K + changeGold).toLocaleString('en-IN');
+            document.getElementById('gold-22k').innerText = "₹ " + (baseGold22K + changeGold).toLocaleString('en-IN');
+            document.getElementById('silver-rate').innerText = "₹ " + (baseSilver + changeSilver).toLocaleString('en-IN');
+        }
+        setInterval(updateGoldRates, 5000);
+
+        // Chat UI Functions
+        function toggleChat() {
+            let win = document.getElementById('chatWindow');
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+
+        function sendMessage() {
+            let input = document.getElementById('chatInput');
+            let text = input.value.trim();
+            if (!text) return;
+            
+            // Show User Message
+            renderMessage(text, 'user');
+            input.value = '';
+            
+            // Generate Smart AI Reply with delay
+            let chatBox = document.getElementById('chatMessages');
+            let typingDiv = document.createElement('div');
+            typingDiv.className = 'msg bot';
+            typingDiv.innerText = 'Typing...';
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                chatBox.removeChild(typingDiv);
+                let reply = getSmartAIResponse(text);
+                renderMessage(reply, 'bot');
+            }, 800);
+        }
+
+        function renderMessage(text, sender) {
+            let msgArea = document.getElementById('chatMessages');
+            let div = document.createElement('div');
+            div.className = `msg ${sender}`;
+            div.innerText = text;
+            msgArea.appendChild(div);
+            msgArea.scrollTop = msgArea.scrollHeight;
+        }
+
+        // ==========================================
+        //  THE "SMART AI" JAVASCRIPT BRAIN
+        // ==========================================
+        function getSmartAIResponse(query) {
+            query = query.toLowerCase();
+
+            // 1. Greetings
+            if (query.match(/\b(hi|hello|hey|namaste|hlo|pranam)\b/)) {
+                return "Namaste! 🙏 Maa Jagdamba Jewellers mein aapka swagat hai. Kahiye, aaj main aapki kya madad karoon?";
+            }
+            
+            // 2. Fetch Live Rates dynamically from the ticker
+            if (query.match(/(rate|price|bhav|daam|sona|chandi|gold|silver|aaj ka)/)) {
+                let g24 = document.getElementById('gold-rate').innerText;
+                let g22 = document.getElementById('gold-22k').innerText;
+                let sil = document.getElementById('silver-rate').innerText;
+                return "Aaj ka Live Rate kuch is prakar hai:\n\n🥇 24K Gold: " + g24 + " /10g\n🏅 22K Gold: " + g22 + " /10g\n🥈 Silver: " + sil + " /kg\n\nAur koi jaankari chahiye?";
+            }
+
+            // 3. Location/Address
+            if (query.match(/(location|address|kahan|kaha|pata|map|shop|dukaan|jehanabad)/)) {
+                return "📍 Humara showroom 'Pathak Toli, Main Rd, near DULHAN saree, Jehanabad, Bihar' mein sthit hai. Aap website ke map section se direct rasta dekh sakte hain.";
+            }
+
+            // 4. Contact Info
+            if (query.match(/(contact|number|phone|call|whatsapp|baat|sampark|mobile)/)) {
+                return "📞 Aap humse seedha +91 9199802116 par call ya WhatsApp par baat kar sakte hain.";
+            }
+
+            // 5. Timings
+            if (query.match(/(time|open|close|kab khulta|baje|timing)/)) {
+                return "🕒 Humari shop rozana subah 9:00 AM se raat 8:00 PM tak open rehti hai.";
+            }
+
+            // 6. Purity / Hallmark
+            if (query.match(/(purity|shuddh|hallmark|huid|asli|guarantee|quality|bis)/)) {
+                return "✨ Humare yahan milne wala har aabhushan 100% BIS Hallmarked (HUID) hota hai. Shuddhata ki poori guarantee!";
+            }
+
+            // 7. How to Order/Buy
+            if (query.match(/(buy|order|kharidna|purchase|kaise le|kaise kharide)/)) {
+                return "🛍️ Kisi bhi item ko order karne ke liye, uske niche diye gaye 'Inquire on WhatsApp' button par click karein aur humari team aapse direct jud jayegi.";
+            }
+
+            // 8. Fallback (If the AI doesn't understand)
+            return "🤖 Maaf kijiyega, main ek AI Assistant hoon aur mujhe is baare mein poori jaankari nahi hai. Kripya aap hume +91 9199802116 par call kar lein ya WhatsApp par message chhod dein. 🙏";
+        }
+    </script>
+</body>
+</html>
